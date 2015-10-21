@@ -1,0 +1,44 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>Archiwum KMS UJ</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="global_css.css" rel="stylesheet" type="text/css" media="all">		
+	</head>
+	<body><div align=center height=600>
+		<table bgcolor=#bed5e0 width=800><tr>
+			<td align=right>
+				<a class='menu_l' href='logowanie.php'>zaloguj się</a>
+			</td>
+		</tr></table>
+	<table width=500 cellpadding=2 style='border: solid 1px #666666'><form method=get action='wyniki.php'>
+		<tr bgcolor=darkblue><td colspan=3>
+			<span style='color: white; font-weight: bold'>
+				Aby rozpocząć wyszukiwanie...
+			</span>
+		</td></tr>
+
+		<tr><td align=right>Wprowadź termin wyszukiwawczy:<br>
+			<input type=text size=31 name='q_string'></td>
+		<td align=left>Wybierz metodę wyszukiwania:<br>
+
+		<select name='wg' style='width: 205px'>
+			<option selected value='nazwisko'>
+				Nazwisko
+			<option value='opis'>
+				Opis
+			<option value='rok'>
+				Rok
+			<option value='segregator'>
+				Segragator
+		</select>
+
+		</td></tr>
+
+		<tr><td colspan=3 align=center>
+			<input type=submit value='Szukaj &gt;' style='background-color: darkblue; color: white; font-weight: bold'>
+		</td></tr>
+
+	</form></table>
+</div></body></html>

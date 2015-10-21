@@ -1,0 +1,28 @@
+body {
+	font-family: Verdana, sans-serif; font-size: 13px
+}	
+td {
+	font-family: Verdana, sans-serif; font-size: 13px
+}
+
+.frm {
+	font-family: Verdana, sans-serif; font-size: 13px; width: 300;
+}
+.frm_wypoz {
+	font-family: Verdana, sans-serif; font-size: 13px; width: 180;
+}
+.blue_b {
+	font-family: Verdana, sans-serif; background-color: darkblue; color: white; font-weight: bold; font-size: 13px
+}
+.orange_b {
+	font-family: Verdana, sans-serif; background-color: #e25e00; color: white; font-weight: bold; font-size: 13px
+}
+.menu_l {
+	color: blue
+}
+.menu_f {
+	color: red
+}
+.menu_l_wyp {
+	color: white
+}
