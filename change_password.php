@@ -14,9 +14,9 @@
 <form id='passwd_form'>
 <table>
 <tr><th colspan=2>Zmiana hasła:</th></tr>
-<tr><td>Stare hasło:</td><td><input type='text' id='passwd_old_password'></td></tr>
-<tr><td>Nowe hasło:</td><td><input type='password' id='passwd_new_password'></td></tr>
-<tr><td>Powtórz hasło:</td><td><input type='password' id='passwd_new_password2'></td></tr>
+<tr><td><label for='passwd_old_password'>Stare hasło:</label></td><td><input type='text' id='passwd_old_password'></td></tr>
+<tr><td><label for='passwd_new_password'>Nowe hasło:</label></td><td><input type='password' id='passwd_new_password'></td></tr>
+<tr><td><label for='passwd_new_password2'>Powtórz hasło:</label></td><td><input type='password' id='passwd_new_password2'></td></tr>
 <tr><td class='submit' colspan=2><input type='submit' class='submit' value='Zmień'></td></tr>
 </table>
 </form>

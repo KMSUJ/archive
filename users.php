@@ -38,10 +38,10 @@ $('#user_add_button').click(function() {
 <form id='user_add_form'>\
 <table>\
 <tr><th colspan=2>Nowy użytkownik</th></tr>\
-<tr><td>Login</td><td><input type='text' id='user_add_username'></td></tr>\
-<tr><td>Admin</td><td><input type='checkbox' id='user_add_is_admin'></td></tr>\
-<tr><td>Hasło:</td><td><input type='password' id='user_add_password'></td></tr>\
-<tr><td>Powtórz hasło:</td><td><input type='password' id='user_add_password2'></td></tr>\
+<tr><td><label for='user_add_username'>Login:</label></td><td><input type='text' id='user_add_username'></td></tr>\
+<tr><td><label for='user_add_is_admin'>Admin:</label></td><td><input type='checkbox' id='user_add_is_admin'></td></tr>\
+<tr><td><label for='user_add_password'>Hasło:</label></td><td><input type='password' id='user_add_password'></td></tr>\
+<tr><td><label for='user_add_password2'>Powtórz hasło:</label></td><td><input type='password' id='user_add_password2'></td></tr>\
 <tr><td colspan=2 class='submit'><input type='submit' class='submit' value='Dodaj'>\
 	<input id='user_add_cancel' type='button' class='submit' value='Anuluj'></td></tr>\
 </table>\
@@ -110,9 +110,9 @@ $('.user_entry').click(function() {
 <form id='user_edit_form'>\
 <table>\
 <tr><th colspan=2>"+username+"</th></tr>\
-<tr><td>Admin</td><td><input type='checkbox' id='user_edit_is_admin' "+(is_admin==1?"checked":"")+"></td></tr>\
-<tr><td>Hasło:</td><td><input type='password' id='user_edit_password'></td></tr>\
-<tr><td>Powtórz hasło:</td><td><input type='password' id='user_edit_password2'></td></tr>\
+<tr><td><label for='user_edit_is_admin'>Admin:</label></td><td><input type='checkbox' id='user_edit_is_admin' "+(is_admin==1?"checked":"")+"></td></tr>\
+<tr><td><label for='user_edit_password'>Hasło:</label></td><td><input type='password' id='user_edit_password'></td></tr>\
+<tr><td><label for='user_edit_password2'>Powtórz hasło:</label></td><td><input type='password' id='user_edit_password2'></td></tr>\
 <tr><td colspan=2 class='submit'><input type='submit' class='submit' value='Zapisz'>\
 	<input id='user_edit_remove' type='button' class='submit' value='Usuń'>\
 	<input id='user_edit_cancel' type='button' class='submit' value='Anuluj'></td></tr>\

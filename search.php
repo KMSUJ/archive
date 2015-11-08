@@ -27,10 +27,10 @@
 <form id='document_add_form'>\
 <table>\
 <tr><th colspan=2>Nowy dokument</th></tr>\
-<tr><td>Sygnatura:</td><td><input type='text' id='document_add_signature'></td></tr>\
-<tr><td>Data od [mm/dd/yyyy]:</td><td><input type='date' id='document_add_date_from'></td></tr>\
-<tr><td>Data do [mm/dd/yyyy]:</td><td><input type='date' id='document_add_date_to'></td></tr>\
-<tr><td colspan=2>Opis:</td></tr>\
+<tr><td><label for='document_add_signature'>Sygnatura:</label></td><td><input type='text' id='document_add_signature'></td></tr>\
+<tr><td><label for='document_add_date_from'>Data od [mm/dd/yyyy]:</label></td><td><input type='date' id='document_add_date_from'></td></tr>\
+<tr><td><label for='document_add_date_to'>Data do [mm/dd/yyyy]:</label></td><td><input type='date' id='document_add_date_to'></td></tr>\
+<tr><td colspan=2><label for='document_add_description'>Opis:</label></td></tr>\
 <tr><td colspan=2><textarea id='document_add_description' class='document_add_description'></textarea></td></tr>\
 <tr><td colspan=2 class='submit'><input type='submit' value='Dodaj' class='submit'>\
 	<input type='button' id='document_add_cancel' value='Zamknij' class='submit'></td></tr>\

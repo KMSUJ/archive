@@ -13,8 +13,8 @@
 <form id='login_form'>
 <table>
 <tr><th colspan=2>Logowanie:</th></tr>
-<tr><td>Login:</td><td><input type='text' id='login_username'></td></tr>
-<tr><td>Hasło:</td><td><input type='password' id='login_password'></td></tr>
+<tr><td><label for='login_username'>Login:</label></td><td><input type='text' id='login_username'></td></tr>
+<tr><td><label for='login_password'>Hasło:</label></td><td><input type='password' id='login_password'></td></tr>
 <tr><td class='submit' colspan=2><input type='submit' class='submit' value='Zaloguj się'></td></tr>
 </table>
 </form>
