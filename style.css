@@ -1,0 +1,142 @@
+body
+{
+	font-family: Verdana, sans-serif;
+}
+
+a
+{
+	color: blue;
+}
+
+/*
+ * main content
+ */
+
+div.main_content
+{
+	margin-top: 20px;
+}
+
+/*
+ * menus
+ */
+
+/* horizontal menu */
+
+div.horizontal_menu ul
+{
+	background-color: lightblue;
+	list-style-type: none;
+	margin: 5px;
+	padding: 0;
+}
+
+div.horizontal_menu ul li
+{
+	display: inline;
+}
+
+div.horizontal_menu ul li a
+{
+	display: inline-block;
+	padding: 5px;
+}
+
+div.horizontal_menu ul li a:hover
+{
+	background-color: skyblue;
+}
+
+/* login menu */
+
+div.login_menu
+{
+	text-align: right;
+}
+
+/*
+ * dialog
+ */
+
+div.popup_dialog
+{
+	position: fixed;
+	top: 100px;
+	left: 0;
+	width: 100%;
+}
+
+div.popup_dialog table
+{
+	background-color: white;
+}
+
+div.dialog table
+{
+	margin: auto;
+	border: solid 2px gray;
+}
+
+div.dialog table th
+{
+	background-color: darkblue;
+	color: white;
+	text-align: center;
+}
+
+div.dialog table td.submit
+{
+	text-align: center;
+}
+
+div.dialog input.submit,
+div.dialog button.submit
+{
+	background-color: darkblue;
+	color: white;
+	font-weight: bold;
+}
+
+/*
+ * error
+ */
+
+span.error
+{
+	color: red;
+}
+
+div.error
+{
+	text-align: center;
+	color: red;
+}
+
+/*
+ * users
+ */
+
+div.users table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+div.users table td
+{
+	border: solid 1px black;
+	cursor: pointer;
+}
+
+div.users table th
+{
+	border: solid 1px black;
+	background-color: darkblue;
+	color: white;
+	text-align: center;
+}
+
+div.users table tr:hover
+{
+	background-color: lightblue;
+}
