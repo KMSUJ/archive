@@ -21,8 +21,8 @@
 	} else {
 		mysql_query("
 DROP TABLE IF EXISTS
-	categories,
-	categories_to_archive_files,
+	tags,
+	tags_to_archive_files,
 	people,
 	archive_files,
 	people_to_archive_files,

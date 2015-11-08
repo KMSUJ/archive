@@ -1,11 +1,18 @@
 body
 {
 	font-family: Verdana, sans-serif;
+	font-size: 12pt;
 }
 
 a
 {
 	color: blue;
+}
+
+div.header
+{
+	text-align: center;
+	font-weight: bold;
 }
 
 /*
@@ -190,4 +197,37 @@ textarea.document_add_description
 div.document_add table
 {
 	width: 70%;
+}
+
+ul.search_additional_parameters
+{
+	list-style-type: none;
+	margin: 5px;
+	padding: 0;
+}
+
+ul.search_additional_parameters li
+{
+	display: inline;
+}
+
+ul.search_additional_parameters li div.entry
+{
+	vertical-align: top;
+	display: inline-block;
+	margin: 5px;
+}
+
+ul.search_tags,
+ul.search_people
+{
+	list-style-type: none;
+	margin: 5px;
+	padding: 0;
+}
+
+ul.search_tags li,
+ul.search_people li
+{
+	display: list-item;
 }

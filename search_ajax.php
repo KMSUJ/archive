@@ -34,6 +34,14 @@
 			$result["count"] = $res["count"];
 			$result["results"] = $res["results"];
 			break;
+		case "autocomplete_tag":
+			$keywords = $_POST["keywords"];
+			$result["results"] = array(join(" ", $keywords));
+			break;
+		case "autocomplete_person":
+			$keywords = $_POST["keywords"];
+			$result["results"] = array(join(" ", $keywords));
+			break;
 		default:
 			$result["error"] = "unknown command '$action'";
 	}

@@ -40,9 +40,6 @@
 </div>\
 		");
 
-		$('#document_add_date_from').datepicker();
-		$('#document_add_date_to').datepicker();
-
 		$('#document_add_form').submit(function() {
 			$('#error').text('');
 
@@ -109,12 +106,36 @@
 <form id='search_form'>
 <input type='text' id='search_box' class='search_box'>
 <input type='submit' id='search_button' class='submit' value='szukaj'>
+</form>
+<ul class='search_additional_parameters'>
+<li>
+<div class='entry'>
+<div class='header'>Osoby powiązane</div>
+<ul id='search_people' class='search_people'></ul>
+<form id='search_add_person_form'>
+<input type='text' id='search_add_person_input'>
+<input type='submit' value='dodaj' class='submit'>
+</form>
+</div>
+</li>
+<li>
+<div class='entry'>
+<div class='header'>Kategorie</div>
+<ul id='search_tags' class='search_tags'></ul>
+<form id='search_add_tag_form'>
+<input type='text' id='search_add_tag_input'>
+<input type='submit' value='dodaj' class='submit'>
+</form>
+</div>
+</li>
+</ul>
 <div class='pages'>
+<form id='search_page_form'>
 Znaleziono artykułów: <span id='results_count'>0</span><br>
 Strona <input type='number' id='results_page' class='short' value='1' min='1' step='1'> z <span id='results_pages'>0</span>
-<input type='button' id='results_change_page' value='Przejdź' class='submit'>
-</div>
+<input type='submit' id='results_change_page' value='Przejdź' class='submit'>
 </form>
+</div>
 </div>
 
 <div class='results'>
@@ -123,6 +144,9 @@ Strona <input type='number' id='results_page' class='short' value='1' min='1' st
 </div>
 
 <script>
+/*
+ * search form
+ */
 	page_limit = 50;
 
 	function reload_results() {
@@ -155,15 +179,87 @@ Strona <input type='number' id='results_page' class='short' value='1' min='1' st
 			}
 		}).fail(function(data) {
 			$('#error').text(data['responseText']);
-		}).always(function(data) {
-			console.log(data);
 		});
 
 		return false;
 	}
 
 	$('#search_form').submit(reload_results);
-	$('#results_change_page').click(reload_results);
+	$('#search_page_form').submit(reload_results);
+
+/*
+ * people form
+ */
+	$('#search_add_person_input').autocomplete({
+		source: function(request, response) {
+			keywords = $('#search_add_person_input').val().split(' ');
+
+			$.ajax({
+				dataType: 'json',
+				type: 'POST',
+				url: 'search_ajax.php',
+				data: {
+					'action': 'autocomplete_person',
+					'keywords': keywords,
+				},
+			}).done(function(data) {
+				if (data['error']) {
+					$('#error').text(data['error']);
+				} else {
+					response(data['results']);
+				}
+			}).fail(function(data) {
+				$('#error').text(data['responseText']);
+			});
+		},
+	});
+
+	$('#search_add_person_form').submit(function() {
+		person_input = $('#search_add_person_input');
+
+		if (person_input.val() != '') {
+			$('#search_people').append('<li>'+person_input.val()+'</li>');
+			person_input.val('');
+		}
+		return false;
+	});
+
+/*
+ * people form
+ */
+	$('#search_add_tag_input').autocomplete({
+		source: function(request, response) {
+			keywords = $('#search_add_tag_input').val().split(' ');
+
+			$.ajax({
+				dataType: 'json',
+				type: 'POST',
+				url: 'search_ajax.php',
+				data: {
+					'action': 'autocomplete_tag',
+					'keywords': keywords,
+				},
+			}).done(function(data) {
+				if (data['error']) {
+					$('#error').text(data['error']);
+				} else {
+					response(data['results']);
+				}
+			}).fail(function(data) {
+				$('#error').text(data['responseText']);
+			});
+		},
+	});
+
+	$('#search_add_tag_form').submit(function() {
+		tag_input = $('#search_add_tag_input');
+
+		if (tag_input.val() != '') {
+			$('#search_tags').append('<li>'+tag_input.val()+'</li>');
+			tag_input.val('');
+		}
+		return false;
+	});
 </script>
 			<?php
 		}

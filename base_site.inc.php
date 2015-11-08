@@ -77,8 +77,11 @@ Zalogowano jako <?php echo username() ?> <a href='logout.php'>wyloguj</a>
 <html>
 <head>
 <link rel='stylesheet' type='text/css' href='style.css'>
+<link rel='stylesheet' type='text/css' href='jquery-ui/jquery-ui.structure.css'>
+<link rel='stylesheet' type='text/css' href='jquery-ui/jquery-ui.theme.css'>
 <meta charset='UTF-8'>
-<script src='jquery-2.1.4.min.js'></script>
+<script src='jquery.min.js'></script>
+<script src='jquery-ui/jquery-ui.min.js'></script>
 <title><?php $this->title(); ?></title>
 </head>
 <body>
