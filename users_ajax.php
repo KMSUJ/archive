@@ -8,7 +8,7 @@
 	$action = $_POST["action"];
 
 	if (!is_admin()) {
-		$result["error"] = "you have to be an admin";
+		$result["error"] = "musisz być administratorem";
 		die(json_encode($result));
 	}
 
@@ -40,5 +40,5 @@
 			$result["error"] = "unknown command '$action'";
 	}
 
-	echo json_encode($result);
+	echo utf8_encode(json_encode($result));
 ?>

@@ -13,12 +13,12 @@
 			$new_password = $_POST["new_password"];
 
 			if (!is_logged()) {
-				$result["error"] = "you have to be logged in";
+				$result["error"] = "musisz się zalogować";
 				break;
 			}
 
 			if (!auth_check_password(username(), $old_password)) {
-				$result["error"] = "old password does not match";
+				$result["error"] = "stare hasło nie pasuje";
 				break;
 			}
 
@@ -28,5 +28,5 @@
 			$result["error"] = "unknown command '$action'";
 	}
 
-	echo json_encode($result);
+	echo utf8_encode(json_encode($result));
 ?>
