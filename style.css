@@ -140,3 +140,32 @@ div.users table tr:hover
 {
 	background-color: lightblue;
 }
+
+/*
+ * search
+ */
+
+div.search
+{
+	text-align: center;
+}
+
+div.search input.wide
+{
+	width: 70%;
+}
+
+div.search div.pages
+{
+	text-align: right;
+}
+
+div.search input.short
+{
+	width: 40px;
+}
+
+div.results div.title
+{
+	font-weight: bold;
+}
