@@ -45,9 +45,9 @@ password: <input type='password' name='password'><br>
 
 		mysql_query("CREATE TABLE archive_files (
 				archive_file_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-				signature VARCHAR(128),
-				date_lower_bound DATE,
-				date_upper_bound DATE,
+				signature VARCHAR(128) UNIQUE,
+				date_from DATE,
+				date_to DATE,
 				description TEXT,
 				check (date_lower_bound < date_upper_bound)
 			);

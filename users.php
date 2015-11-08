@@ -80,7 +80,7 @@ $('#user_add_button').click(function() {
 				location.reload();
 			}
 		}).fail(function(data) {
-			$('#error').text(data['error']);
+			$('#error').text(data['responseText']);
 		});
 		return false;
 	});
@@ -151,7 +151,7 @@ $('.user_entry').click(function() {
 				location.reload();
 			}
 		}).fail(function(data) {
-			$('#error').text(data['error']);
+			$('#error').text(data['responseText']);
 		});
 		return false;
 	});
@@ -192,7 +192,7 @@ $('.user_entry').click(function() {
 					location.reload();
 				}
 			}).fail(function(data) {
-				$('#error').text(data['error']);
+				$('#error').text(data['responseText']);
 			});
 		});
 	});
