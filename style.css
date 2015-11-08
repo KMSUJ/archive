@@ -89,8 +89,8 @@ div.dialog table td.submit
 	text-align: center;
 }
 
-div.dialog input.submit,
-div.dialog button.submit
+input.submit,
+button.submit
 {
 	background-color: darkblue;
 	color: white;
