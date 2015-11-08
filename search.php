@@ -28,8 +28,8 @@
 <table>\
 <tr><th colspan=2>Nowy dokument</th></tr>\
 <tr><td>Sygnatura:</td><td><input type='text' id='document_add_signature'></td></tr>\
-<tr><td>Data od:</td><td><input type='date' id='document_add_date_from'></td></tr>\
-<tr><td>Data do:</td><td><input type='date' id='document_add_date_to'></td></tr>\
+<tr><td>Data od [mm/dd/yyyy]:</td><td><input type='date' id='document_add_date_from'></td></tr>\
+<tr><td>Data do [mm/dd/yyyy]:</td><td><input type='date' id='document_add_date_to'></td></tr>\
 <tr><td colspan=2>Opis:</td></tr>\
 <tr><td colspan=2><textarea id='document_add_description' class='document_add_description'></textarea></td></tr>\
 <tr><td colspan=2 class='submit'><input type='submit' value='Dodaj' class='submit'>\
@@ -39,6 +39,9 @@
 </div>\
 </div>\
 		");
+
+		$('#document_add_date_from').datepicker();
+		$('#document_add_date_to').datepicker();
 
 		$('#document_add_form').submit(function() {
 			$('#error').text('');
