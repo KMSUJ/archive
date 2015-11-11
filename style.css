@@ -186,7 +186,8 @@ div.results div.title
 	font-weight: bold;
 }
 
-textarea.document_add_description
+textarea.document_add_description,
+textarea.document_edit_description
 {
 	width: 100%;
 	height: 100px;
@@ -194,7 +195,8 @@ textarea.document_add_description
 	margin: 0;
 }
 
-div.document_add table
+div.document_add table,
+div.document_edit table
 {
 	width: 70%;
 }
