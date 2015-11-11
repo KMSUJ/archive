@@ -68,7 +68,7 @@
 				type: 'POST',
 				url: 'search_ajax.php',
 				data: {
-					'action': 'add',
+					'action': 'document_add',
 					'signature': signature,
 					'date_from': date_from,
 					'date_to': date_to,
@@ -149,6 +149,156 @@ Strona <input type='number' id='results_page' class='short' value='1' min='1' st
  */
 	page_limit = 50;
 
+	document_edit_active = false
+
+	function search_results_show_edit() {
+		if (document_edit_active) {
+			return;
+		}
+		document_edit_active = true;
+
+		signature = $(this).attr('data-signature');
+
+		$.ajax({
+			dataType: 'json',
+			type: 'POST',
+			url: 'search_ajax.php',
+			data: {
+				'action': 'get_document_data',
+				'signature': signature,
+			},
+		}).done(function(data) {
+			if (data['error']) {
+				$('#error').text(data['error']);
+				document_edit_active = false;
+			} else {
+				file = data['result'];
+				signature = file["signature"];
+				$('body').append("\
+<div class='absolute_popup_dialog document_edit' id='document_edit'>\
+<div class='dialog'>\
+<form id='document_edit_form'>\
+<table>\
+<tr><th colspan=2>Nowy dokument</th></tr>\
+<tr><td>Sygnatura:</td><td>"+signature+"</td></tr>\
+<tr><td><label for='document_edit_date_from'>Data od [mm/dd/yyyy]:</label></td><td><input type='date' id='document_edit_date_from' value='"+file["date_from"]+"'></td></tr>\
+<tr><td><label for='document_edit_date_to'>Data do [mm/dd/yyyy]:</label></td><td><input type='date' id='document_edit_date_to' value='"+file["date_to"]+"'></td></tr>\
+<tr><td colspan=2><label for='document_edit_description'>Opis:</label></td></tr>\
+<tr><td colspan=2><textarea id='document_edit_description' class='document_edit_description'>"+file["description"]+"</textarea></td></tr>\
+<tr><td colspan=2 class='submit'><input type='submit' value='Zapisz' class='submit'>\
+	<input type='button' id='document_edit_cancel' value='Zamknij' class='submit'></td></tr>\
+</table>\
+</form>\
+</div>\
+</div>\
+				");
+
+
+				$('#document_edit_form').submit(function() {
+					$('#error').text('');
+
+					date_from = $('#document_edit_date_from').val();
+					date_to = $('#document_edit_date_to').val();
+					description = $('#document_edit_description').val();
+
+					div_document_edit = $(this).parents('#document_edit');
+
+					if (date_from === '' || date_to === '') {
+						$('#error').text('data nie może być pusta');
+						return false;
+					}
+
+					if (date_from > date_to) {
+						$('#error').text('data od nie może być po dacie do');
+						return false;
+					}
+
+					$.ajax({
+						dataType: 'json',
+						type: 'POST',
+						url: 'search_ajax.php',
+						data: {
+							'action': 'document_edit',
+							'signature': signature,
+							'date_from': date_from,
+							'date_to': date_to,
+							'description': description,
+						},
+					}).done(function(data) {
+						if (data['error']) {
+							$('#error').text(data['error']);
+						} else {
+							div_document_edit.remove();
+							document_edit_active = false;
+							reload_results();
+						}
+					}).fail(function(data) {
+						$('#error').text(data['responseText']);
+					});
+
+					return false;
+				});
+
+				$('#document_edit_cancel').click(function() {
+					$(this).parents('#document_edit').remove();
+					document_edit_active = false;
+				});
+			}
+		}).fail(function(data) {
+			$('#error').text(data['responseText']);
+			document_edit_active = false;
+		});
+	}
+
+	document_remove_active = false
+	function search_results_show_remove() {
+		if (document_remove_active) {
+			return;
+		}
+		document_remove_active = true;
+
+		signature = $(this).attr('data-signature');
+		
+		$('body').append("\
+<div class='popup_dialog' id='document_remove'>\
+<div class='dialog'>\
+<table>\
+<tr><th colspan=2>Usuwanie dokumentu "+signature+"</th></tr>\
+<tr><td colspan=2 class='submit'><input id='document_remove_remove' type='button' class='submit' value='Usuń'><input id='document_remove_cancel' type='button' class='submit' value='Anuluj'></td></tr>\
+</table>\
+</div>\
+</div>\
+		");
+
+		$('#document_remove_cancel').click(function() {
+			$(this).parents('#document_remove').remove();
+			document_remove_active = false;
+		});
+
+		$('#document_remove_remove').click(function() {
+			div_document_remove = $(this).parents('#document_remove');
+			$.ajax({
+				dataType: 'json',
+				type: 'POST',
+				url: 'search_ajax.php',
+				data: {
+					'action': 'document_remove',
+					'signature': signature,
+				},
+			}).done(function(data) {
+				if (data['error']) {
+					$('#error').text(data['error']);
+				} else {
+					div_document_remove.remove();
+					document_remove_active = false;
+					reload_results();
+				}
+			}).fail(function(data) {
+				$('#error').text(data['responseText']);
+			});
+		});
+	}
+
 	function reload_results() {
 		keywords = $('#search_box').val().split(' ');
 		page = $('#results_page').val();
@@ -174,7 +324,15 @@ Strona <input type='number' id='results_page' class='short' value='1' min='1' st
 				$('#results_pages').text(Math.ceil(data['count'] / page_limit));
 				for (i in data['results']) {
 					file = data['results'][i];
-					results.append("<li><div class='title'>"+file["signature"]+"</div><div class='description'>"+file["description"]+"</div></li>");
+
+					results.append("<li><?php
+							if (is_logged()) {
+								echo "<div class='search_results_options'>";
+								echo "<input data-signature='\"+file[\"signature\"]+\"' class='search_results_show_edit submit' type='button' value='edytuj'>";
+								echo "<input data-signature='\"+file[\"signature\"]+\"' class='search_results_show_remove submit' type='button' value='usuń'>";
+								echo "</div>";
+							} ?><div class='title'>"+file["signature"]+"</div><div class='date'>"+file["date_from"]+" - "+file["date_to"]+"</div>"
+								+"<div class='description'>"+file["description"]+"</div></li>");
 				}
 			}
 		}).fail(function(data) {
@@ -183,6 +341,9 @@ Strona <input type='number' id='results_page' class='short' value='1' min='1' st
 
 		return false;
 	}
+
+	$(document).on('click', '.search_results_show_edit', search_results_show_edit);
+	$(document).on('click', '.search_results_show_remove', search_results_show_remove);
 
 	$('#search_form').submit(reload_results);
 	$('#search_page_form').submit(reload_results);

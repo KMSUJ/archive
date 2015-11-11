@@ -231,3 +231,8 @@ ul.search_people li
 {
 	display: list-item;
 }
+
+div.search_results_options
+{
+	float: right;
+}
