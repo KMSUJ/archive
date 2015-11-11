@@ -45,7 +45,11 @@
 			$res = mysql_query("SELECT * FROM archive_files WHERE true $query LIMIT $limit_from, $limit_to") or die(mysql_error());
 			$result["results"] = array();
 			while ($row = mysql_fetch_array($res)) {
-				$result["results"][] = $row;
+				$item = array();
+				foreach ($row as $k => $v) {
+					$item[$k] = urldecode($v);
+				}
+				$result["results"][] = $item;
 			}
 			break;
 		case "autocomplete_tag":
@@ -64,7 +68,11 @@
 				break;
 			}
 
-			$result["result"] = mysql_fetch_array($res);
+			$item = array();
+			foreach (mysql_fetch_array($res) as $k => $v) {
+				$item[$k] = urldecode($v);
+			}
+			$result["result"] = $item;
 			break;
 		case "document_remove":
 			if (!is_logged()) {
